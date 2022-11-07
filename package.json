@@ -1,0 +1,14 @@
+{
+  "name": "sityea-web",
+  "version": "1.0.0",
+  "description": "useful tool",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd web && yarn start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {}
+}
