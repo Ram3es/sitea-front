@@ -16,5 +16,5 @@ export const useNearLogin = async () => {
 
   const wallet = new nearAPI.WalletConnection(near, null);
 
-  wallet.requestSignIn({});
+  wallet.requestSignIn({ successUrl: 'http://localhost:3000/' });
 };

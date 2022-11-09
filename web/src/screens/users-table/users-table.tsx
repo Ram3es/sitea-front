@@ -14,6 +14,8 @@ import {
 } from '@material-ui/core';
 
 import { HEAD_TITLE, MOCK_DATA } from './user-table.constants';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from '@constants/routes';
 
 export const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -29,6 +31,8 @@ export const useStyles = makeStyles((theme) => ({
 export const UsersTable = () => {
   const [value, setValue] = useState('');
 
+  const navigate = useNavigate();
+
   const classes = useStyles();
   const { TblContainer, TblHead, TblPagination, pagingAndSorting } = useTable(
     MOCK_DATA,
@@ -41,6 +45,11 @@ export const UsersTable = () => {
   ) => {
     setValue(event.target.value);
   };
+
+  const handleInfoUser = (userId: number) => {
+    navigate({ pathname: `/${ROUTES.admin}/${userId}` });
+  };
+
   return (
     <>
       <Paper className={classes.pageContent}>
@@ -65,12 +74,18 @@ export const UsersTable = () => {
           <TblHead />
           <TableBody>
             {pagingAndSorting().map((user) => (
-              <TableRow key={user.id}>
-                <TableCell>{user.email}</TableCell>
+              <TableRow onClick={() => handleInfoUser(user.id)} key={user.id}>
+                <TableCell style={{ minWidth: '200px' }}>
+                  {user.email}
+                </TableCell>
                 <TableCell>{user.wallet}</TableCell>
                 <TableCell>{user.lastLogin}</TableCell>
-                <TableCell>{user.amountLogin}</TableCell>
-                <TableCell>{user.hoursSpent}</TableCell>
+                <TableCell align="center" width="40px">
+                  {user.amountLogin}
+                </TableCell>
+                <TableCell align="center" width="40px">
+                  {user.hoursSpent}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
