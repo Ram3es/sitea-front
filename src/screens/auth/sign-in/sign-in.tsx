@@ -1,26 +1,34 @@
 import React, { FC, useEffect } from 'react';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 
-import { Button } from '@components/button';
+import { ROUTES } from '@constants/routes';
+import { storage } from '@services/storage/storage';
 
 import { SignInStyles as Styled } from './sign-in.styles';
-import { useNearLogin } from '../near-login/near';
+
 import { GoogleButton } from '../gogle-login/gogle-login';
-import { storage } from '@services/storage/storage';
-import { useLocation, useNavigate } from 'react-router';
-import { ROUTES } from '@constants/routes';
+
+import { MetamaskButton } from '../metamask-login/metamask-login';
+
+import { NearButton } from '../near-login/near';
 
 export const SignIn: FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [searchParams] = useSearchParams();
+  const accountId = searchParams.get('account_id');
+
+  accountId && storage.setIsAuth();
+
   useEffect(() => {
     const token = storage.getToken();
-    if (token) {
+    if (token || accountId) {
       return location.state
         ? navigate(location.state?.from, { replace: true })
         : navigate(ROUTES.main, { replace: true });
     }
-  }, []);
+  }, [location]);
   return (
     <Styled.Section>
       <Styled.Wrapper>
@@ -28,12 +36,8 @@ export const SignIn: FC = () => {
         <Styled.Label>Please login</Styled.Label>
         <Styled.ButtonWrapper>
           <GoogleButton />
-          <Button
-            title="Login with NEAR wallet"
-            onClick={useNearLogin}
-            minWidth={220}
-          />
-          <Button title="Login with Metamask" minWidth={220} />
+          <NearButton />
+          <MetamaskButton />
         </Styled.ButtonWrapper>
       </Styled.Wrapper>
     </Styled.Section>

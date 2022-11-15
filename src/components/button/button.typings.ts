@@ -3,6 +3,7 @@ export interface IButtonTypings {
   textColor?: string;
   isActive?: boolean;
   minWidth?: number;
+  isDisabled?: boolean;
 }
 
 export interface IButtonProps extends IButtonTypings {

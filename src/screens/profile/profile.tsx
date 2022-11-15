@@ -9,7 +9,7 @@ export const Profile: FC = () => {
     <Styled.Container>
       <Styled.RowWrapper>
         <Styled.Title>Email:</Styled.Title>
-        <Styled.Title>mock.test@mail.com</Styled.Title>
+        <Styled.Title>dziugasg@gmail.com</Styled.Title>
       </Styled.RowWrapper>
       <Styled.RowWrapper>
         <Styled.Title>NEAR Wallet :</Styled.Title>
