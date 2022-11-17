@@ -13,6 +13,8 @@ import {
 } from 'react-google-login';
 import { useNavigate } from 'react-router-dom';
 import { storage } from '@services/storage/storage';
+import { trackPromise } from 'react-promise-tracker';
+import { googleAuth } from '@services/auth.service';
 
 export const GoogleButton = () => {
   const clientId = ENV_VARIABLES.GOOGLE_CLIENT_ID;
@@ -27,6 +29,8 @@ export const GoogleButton = () => {
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
     const accessToken = (response as GoogleLoginResponse)?.accessToken;
+    const { data } = await trackPromise(googleAuth({ token: accessToken }));
+
     if (accessToken) {
       storage.setIsAuth();
       navigate(ROUTES.dashboard);
