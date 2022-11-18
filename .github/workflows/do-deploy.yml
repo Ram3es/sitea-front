@@ -13,10 +13,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build image
-        run: docker build . -f deploy/Dockerfile -t $IMAGE_NAME
-
       - name: Set env vars (development)
         run: |
           echo "IMAGE_NAME=sityea-dash-front-dev" >> $GITHUB_ENV
@@ -25,6 +21,10 @@ jobs:
       - name: Create env file
         run: |
           echo REACT_APP_GOOGLE_AUTH_CLIENT_ID=$REACT_APP_GOOGLE_AUTH_CLIENT_ID >> .env
+
+      - name: Build image
+        uses: actions/checkout@v2
+        run: docker build . -f deploy/Dockerfile -t $IMAGE_NAME
 
       - name: Install doctl # install the doctl on the runner
         uses: digitalocean/action-doctl@v2
