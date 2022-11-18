@@ -18,7 +18,7 @@ jobs:
 
       - name: Set env vars (development)
         run: |
-          echo "IMAGE_NAME=sityea-dash-front-dev" >> $GITHUB_ENV
+          echo "IMAGE_NAME=sityea-front-dev" >> $GITHUB_ENV
           echo "REACT_APP_GOOGLE_AUTH_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_AUTH_CLIENT_ID }}" >> $GITHUB_ENV
 
       - name: Create env file
