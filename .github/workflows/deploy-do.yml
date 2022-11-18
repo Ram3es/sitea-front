@@ -1,0 +1,38 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  REGISTRY_NAME: sityea
+
+jobs:
+  #Push to Digital Ocean private Registry
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build image
+        run: docker build . -f deploy/Dockerfile -t $IMAGE_NAME
+
+      - name: Set env vars (development)
+        run: |
+          echo "IMAGE_NAME=sityea-dash-front-dev" >> $GITHUB_ENV
+          echo "REACT_APP_GOOGLE_AUTH_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_AUTH_CLIENT_ID }}" >> $GITHUB_ENV
+
+      - name: Create env file
+        run: |
+          echo REACT_APP_GOOGLE_AUTH_CLIENT_ID=$REACT_APP_GOOGLE_AUTH_CLIENT_ID >> .env
+
+      - name: Install doctl # install the doctl on the runner
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: push image to digitalocean
+        run: |
+          doctl registry login
+          docker tag $IMAGE_NAME registry.digitalocean.com/$REGISTRY_NAME/$IMAGE_NAME
+          docker push registry.digitalocean.com/$REGISTRY_NAME/$IMAGE_NAME
