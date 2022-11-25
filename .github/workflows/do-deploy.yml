@@ -20,10 +20,12 @@ jobs:
         run: |
           echo "IMAGE_NAME=sityea-front-dev" >> $GITHUB_ENV
           echo "REACT_APP_GOOGLE_AUTH_CLIENT_ID=${{ secrets.REACT_APP_GOOGLE_AUTH_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "REACT_APP_API_URL=${{secrets.REACT_APP_API_URL}}" >> $GITHUB_ENV
 
       - name: Create env file
         run: |
           echo REACT_APP_GOOGLE_AUTH_CLIENT_ID=$REACT_APP_GOOGLE_AUTH_CLIENT_ID >> .env
+          echo REACT_APP_API_URL=$REACT_APP_API_URL >> .env
 
       - name: Build image
         run: docker build . -f deploy/Dockerfile -t $IMAGE_NAME
