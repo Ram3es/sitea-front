@@ -6,6 +6,8 @@ export const POST = async <T, B = undefined>(
   endPoint: string,
   data?: B
 ): Promise<AxiosResponse<T>> => getInstance().post(`${endPoint}`, data);
+export const GET = async <T>(endpoint: string): Promise<AxiosResponse<T>> =>
+  getInstance().get(`${endpoint}`);
 
 const getInstance = () => {
   const instance = axios.create({
@@ -14,8 +16,6 @@ const getInstance = () => {
   });
   instance.interceptors.request.use((config) => {
     const token = storage.getToken();
-
-    console.log(config, 'config');
 
     if (!token) {
       return config;

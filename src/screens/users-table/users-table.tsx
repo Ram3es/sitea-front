@@ -13,11 +13,15 @@ import {
   Toolbar,
 } from '@material-ui/core';
 
-import { HEAD_TITLE, MOCK_DATA } from './user-table.constants';
+import { HEAD_TITLE } from './user-table.constants';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '@constants/routes';
 
 import { UsersTableStyles as Styled } from './users-table.styles';
+import { useCallback } from 'react';
+import { trackPromise } from 'react-promise-tracker';
+import { getAllUses } from '@services/admin.service';
+import { useEffect } from 'react';
 
 export const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -33,15 +37,30 @@ export const useStyles = makeStyles((theme) => ({
 
 export const UsersTable = () => {
   const [searchInputValue, setSearchInput] = useState('');
-
+  const [allUsers, setUsers] = useState<IUserWithResults[] | []>([]);
   const navigate = useNavigate();
+
+  const getAllUsers = useCallback(async () => {
+    try {
+      const { data } = await trackPromise(getAllUses());
+
+      const formatedData = data.map((user) => {
+        return { ...user };
+      });
+      setUsers(formatedData);
+    } catch (error) {}
+  }, []);
 
   const classes = useStyles();
   const { Table, TableHead, TablePagination, pagingAndSorting } = useTable(
-    MOCK_DATA,
+    allUsers,
     HEAD_TITLE,
     searchInputValue
   );
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   const handleSearchBar = (
     event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
@@ -49,7 +68,7 @@ export const UsersTable = () => {
     setSearchInput(event.target.value);
   };
 
-  const handleInfoUser = (userId: number) =>
+  const handleInfoUser = (userId: string) =>
     navigate({ pathname: `/${ROUTES.admin}/${userId}` });
 
   return (
@@ -84,13 +103,13 @@ export const UsersTable = () => {
                     <TableCell style={{ minWidth: '200px' }}>
                       {user.email}
                     </TableCell>
-                    <TableCell>{user.wallet}</TableCell>
-                    <TableCell>{user.lastLogin}</TableCell>
+                    <TableCell>{user.wallets}</TableCell>
+                    <TableCell>{0}</TableCell>
                     <TableCell align="center" width="40px">
-                      {user.amountLogin}
+                      {0}
                     </TableCell>
                     <TableCell align="center" width="40px">
-                      {user.hoursSpent}
+                      {user.results}
                     </TableCell>
                   </TableRow>
                 );

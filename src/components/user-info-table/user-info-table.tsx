@@ -2,10 +2,15 @@ import { FC } from 'react';
 
 import { Table as MuiTable, TableBody, TableRow } from '@material-ui/core';
 
-import { HEAD_CELL, MOCK_USER_STRAICH } from './user-info-table.constants';
+import { HEAD_CELL } from './user-info-table.constants';
 import { TableStyles as Styled } from './user-info-tabsle.styles';
+import { DATE_OPTIONS } from '@constants/format';
 
-export const UserInfoTable: FC = () => {
+interface IUserInfoTableProps {
+  results?: IResult[];
+}
+
+export const UserInfoTable: FC<IUserInfoTableProps> = ({ results }) => {
   return (
     <Styled.Wrapper>
       <MuiTable>
@@ -17,12 +22,14 @@ export const UserInfoTable: FC = () => {
           </TableRow>
         </Styled.Head>
         <TableBody>
-          {MOCK_USER_STRAICH.map((stat) => {
-            const { date, away, correct, hunched, incorrect } = stat;
+          {results?.map((stat) => {
+            const { day, away, correct, hunched, incorrect, id } = stat;
 
             return (
-              <TableRow key={date}>
-                <Styled.Cell>{date}</Styled.Cell>
+              <TableRow key={id}>
+                <Styled.Cell>
+                  {new Date(day).toLocaleString('en-GB', DATE_OPTIONS)}
+                </Styled.Cell>
                 <Styled.Cell>{correct}</Styled.Cell>
                 <Styled.Cell>{hunched}</Styled.Cell>
                 <Styled.Cell>{incorrect}</Styled.Cell>

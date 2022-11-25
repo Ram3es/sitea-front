@@ -1,9 +1,8 @@
-import React from 'react';
+import { FC } from 'react';
+import axios from 'axios';
 import { gapi } from 'gapi-script';
 
-import { ROUTES } from '@constants/routes';
 import { ENV_VARIABLES } from '@constants/config';
-
 import { Button } from '@components/button';
 
 import {
@@ -11,14 +10,21 @@ import {
   GoogleLoginResponse,
   GoogleLoginResponseOffline,
 } from 'react-google-login';
-import { useNavigate } from 'react-router-dom';
 import { storage } from '@services/storage/storage';
 import { trackPromise } from 'react-promise-tracker';
 import { googleAuth } from '@services/auth.service';
 
-export const GoogleButton = () => {
+import { errorMessage } from '@constants/pop-up';
+import { useAppDispatch } from '@store/store';
+import { loginUser } from '@store/reducers/user.slice';
+
+interface IGoogleButtonProps {
+  userId?: string;
+}
+
+export const GoogleButton: FC<IGoogleButtonProps> = ({ userId }) => {
   const clientId = ENV_VARIABLES.GOOGLE_CLIENT_ID;
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const initialize = () => {
     gapi.auth2.init({ clientId: clientId, scope: '' });
@@ -29,11 +35,21 @@ export const GoogleButton = () => {
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
     const accessToken = (response as GoogleLoginResponse)?.accessToken;
-    const { data } = await trackPromise(googleAuth({ token: accessToken }));
 
-    if (accessToken) {
-      storage.setIsAuth();
-      navigate(ROUTES.dashboard);
+    try {
+      const { data } = await trackPromise(
+        googleAuth({ token: accessToken, userId })
+      );
+
+      if (!userId) {
+        storage.setToken(data.token);
+      }
+
+      dispatch(loginUser(data.user));
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return errorMessage(error?.response?.data.message).fire();
+      }
     }
   };
   return (

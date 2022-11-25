@@ -5,7 +5,7 @@ import { ROUTES } from '@constants/routes';
 import { storage } from '@services/storage/storage';
 
 export const PrivateRoutes: FC = () => {
-  const token = storage.getIsAuth();
+  const token = storage.getToken();
 
   return token ? (
     <Outlet />

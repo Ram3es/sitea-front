@@ -7,7 +7,9 @@
       "@constants/*": ["src/constants/*"],
       "@services/*": ["src/services/*"],
       "@screens/*": ["src/screens/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"]
     }
   }
 }

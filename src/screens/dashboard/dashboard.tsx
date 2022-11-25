@@ -1,13 +1,28 @@
 import { UserInfoTable } from '@components/user-info-table';
-import React from 'react';
+import { useAppSelector } from '@store/store';
+import { getTotalHours } from '@utils/get-total-hours';
+import React, { useMemo } from 'react';
+
+import { useDashboardState } from './dashboard.state';
 
 import { DashboardStyles as Styled } from './dashboard.styles';
 
 export const Dashboard = () => {
-  return (
+  const user = useAppSelector((state) => state.user);
+  const { userWithResult } = useDashboardState(user.id);
+  const results = userWithResult?.results;
+
+  const totalHours = useMemo(
+    () => getTotalHours(results as IResult[]),
+    [results]
+  );
+
+  return results ? (
     <>
-      <Styled.TotalStreight>{`Total straight: ${200} hrs`}</Styled.TotalStreight>
-      <UserInfoTable />
+      <Styled.TotalStreight>{`Total straight: ${totalHours} hrs`}</Styled.TotalStreight>
+      <UserInfoTable results={results} />
     </>
+  ) : (
+    <></>
   );
 };

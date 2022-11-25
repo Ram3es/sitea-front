@@ -3,15 +3,9 @@ const AUTH_KEY = 'isAuthenticated';
 const NEAR_ACC_ID = 'near_wallet_auth_key';
 
 class StorageService {
-  public setToken = (token: string, isRemember: boolean) => {
-    return isRemember
-      ? localStorage.setItem(TOKEN_KEY, token)
-      : sessionStorage.setItem(TOKEN_KEY, token);
-  };
+  public setToken = (token: string) => localStorage.setItem(TOKEN_KEY, token);
 
-  public getToken = () => {
-    return localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY);
-  };
+  public getToken = () => localStorage.getItem(TOKEN_KEY);
 
   public removeToken = () => localStorage.removeItem(TOKEN_KEY);
 

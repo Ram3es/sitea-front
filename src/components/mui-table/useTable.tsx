@@ -8,8 +8,9 @@ import {
   TablePagination as MUIPagination,
   TableSortLabel,
 } from '@material-ui/core';
-import { IHeadCell, IUser } from '@screens/users-table/user-table.constants';
+import { IHeadCell } from '@screens/users-table/user-table.constants';
 import orderBy from 'lodash.orderby';
+import { getTotalHours } from '@utils/get-total-hours';
 
 interface IPropsElem {
   children?: React.ReactNode;
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export function useTable(
-  items: IUser[],
+  items: IUserWithResults[],
   headCells: IHeadCell[],
   searchInputValue: string
 ) {
@@ -58,12 +59,22 @@ export function useTable(
     setRowsPerPage(Number(event.target.value));
     setPage(0);
   };
-  const filteredItems = () =>
-    items.filter(
+  const filteredItems = () => {
+    const formatedData = items.map((user) => ({
+      ...user,
+      email: user.email || '',
+      wallets: [...user.nearWallets, ...user.wallets]
+        .map((wal) => wal.wallet)
+        .join(''),
+      results: getTotalHours(user.results as IResult[]),
+    }));
+
+    return formatedData.filter(
       (item) =>
         item.email.includes(searchInputValue) ||
-        item.wallet.includes(searchInputValue)
+        item.wallets.includes(searchInputValue)
     );
+  };
 
   const pagingAndSorting = () => {
     return orderBy(filteredItems(), orderByField, order).slice(

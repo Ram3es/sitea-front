@@ -5,30 +5,29 @@ import * as nearAPI from 'near-api-js';
 import { ROUTES } from '@constants/routes';
 import { Button } from '@components/button';
 import { storage } from '@services/storage/storage';
+import { trackPromise } from 'react-promise-tracker';
+import { nearLogin } from '@services/auth.service';
+import { loginUser } from '@store/reducers/user.slice';
+import { useAppDispatch } from '@store/store';
+import { useNear } from './near.state';
 
-export const NearButton: FC = () => {
-  const navigate = useNavigate();
+export const NearLoginButton: FC = () => {
+  const dispatch = useAppDispatch();
 
   const useNearLogin = async () => {
-    const nearConfig = {
-      networkId: 'testnet',
-      keyStore: new nearAPI.keyStores.BrowserLocalStorageKeyStore(),
-      nodeUrl: 'https://rpc.testnet.near.org',
-      walletUrl: 'https://wallet.testnet.near.org',
-      helperUrl: 'https://helper.testnet.near.org',
-      explorerUrl: 'https://explorer.testnet.near.org',
-    };
+    const connect = useNear();
+    const walletConnection = await connect();
+    const wallet = walletConnection.getAccountId();
 
-    const near = await nearAPI.connect(nearConfig);
-    const wallet = new nearAPI.WalletConnection(near, 'near');
+    if (wallet) {
+      try {
+        const { data } = await trackPromise(nearLogin({ wallet }));
 
-    const accountId = wallet.getAccountId();
-
-    if (accountId) {
-      storage.setIsAuth();
-      navigate({ pathname: ROUTES.main }, { replace: true });
+        storage.setToken(data.token);
+        dispatch(loginUser(data.user));
+      } catch (error) {}
     } else {
-      await wallet.requestSignIn({});
+      walletConnection.requestSignIn({});
     }
   };
 

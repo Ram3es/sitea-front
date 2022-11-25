@@ -1,12 +1,16 @@
+import { useAppSelector } from '@store/store';
 import { FC } from 'react';
 
 import { navItems } from './sidebar.constants';
 import { SidebarStyles as Styled } from './sidebar.styles';
+import { INavItems } from './sidebar.typings';
 
 export const SideBar: FC = () => {
+  const user = useAppSelector((state) => state.user);
+  const userRole = user.role as keyof INavItems;
   return (
     <Styled.Container>
-      {navItems.user.map((item) => {
+      {navItems[userRole]?.map((item) => {
         return (
           <Styled.WrapNavElem key={item.title}>
             <Styled.NavElement to={item.route}>{item.title}</Styled.NavElement>
