@@ -1,8 +1,4 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
-import * as nearAPI from 'near-api-js';
-
-import { ROUTES } from '@constants/routes';
 import { Button } from '@components/button';
 import { storage } from '@services/storage/storage';
 import { trackPromise } from 'react-promise-tracker';
@@ -10,6 +6,7 @@ import { nearLogin } from '@services/auth.service';
 import { loginUser } from '@store/reducers/user.slice';
 import { useAppDispatch } from '@store/store';
 import { useNear } from './near.state';
+import { ENV_VARIABLES } from '@constants/config';
 
 export const NearLoginButton: FC = () => {
   const dispatch = useAppDispatch();
@@ -27,7 +24,9 @@ export const NearLoginButton: FC = () => {
         dispatch(loginUser(data.user));
       } catch (error) {}
     } else {
-      walletConnection.requestSignIn({});
+      walletConnection.requestSignIn({
+        successUrl: `${ENV_VARIABLES.WEB_URL}near-success`,
+      });
     }
   };
 

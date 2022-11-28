@@ -17,6 +17,9 @@ import { UsersTable } from '@screens/users-table';
 import { Stacking } from '@screens/stacking/stacking';
 
 import { PrivateRoutes } from './private-routes';
+import { NearSuccessPage } from '@screens/auth/near-login/near-success-page';
+import { PrivateAdmin } from './admin-private-route';
+import { PrivateUser } from './user-private-route';
 
 export const App: FC = () => {
   return (
@@ -25,14 +28,18 @@ export const App: FC = () => {
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path={ROUTES.main} element={<Main />}>
-              <Route path={ROUTES.dashboard} element={<Dashboard />} />
-              <Route path={ROUTES.profile} element={<Profile />} />
-              <Route path={ROUTES.stacking} element={<Stacking />} />
-              <Route path={ROUTES.admin} element={<UsersTable />} />
-              <Route path={ROUTES.user} element={<UserInfo />} />
+              <Route element={<PrivateUser />}>
+                <Route path={ROUTES.dashboard} element={<Dashboard />} />
+                <Route path={ROUTES.profile} element={<Profile />} />
+                <Route path={ROUTES.stacking} element={<Stacking />} />
+              </Route>
+              <Route element={<PrivateAdmin />}>
+                <Route path={ROUTES.admin} element={<UsersTable />} />
+                <Route path={ROUTES.user} element={<UserInfo />} />
+              </Route>
             </Route>
           </Route>
-
+          <Route path={ROUTES.nearSuccessPage} element={<NearSuccessPage />} />
           <Route path={ROUTES.login} element={<SignIn />} />
           <Route
             path={ROUTES.noMatch}

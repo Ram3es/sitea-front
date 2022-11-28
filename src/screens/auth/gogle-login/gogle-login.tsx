@@ -35,6 +35,9 @@ export const GoogleButton: FC<IGoogleButtonProps> = ({ userId }) => {
     response: GoogleLoginResponse | GoogleLoginResponseOffline
   ) => {
     const accessToken = (response as GoogleLoginResponse)?.accessToken;
+    if (!accessToken) {
+      return errorMessage('Try again, or sign in another way').fire();
+    }
 
     try {
       const { data } = await trackPromise(

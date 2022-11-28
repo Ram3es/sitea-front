@@ -65,7 +65,7 @@ export function useTable(
       email: user.email || '',
       wallets: [...user.nearWallets, ...user.wallets]
         .map((wal) => wal.wallet)
-        .join(''),
+        .join(', '),
       results: getTotalHours(user.results as IResult[]),
     }));
 

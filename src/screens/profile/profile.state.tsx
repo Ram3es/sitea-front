@@ -1,12 +1,15 @@
-import { errorMessage } from '@constants/pop-up';
-import { useMetamask } from '@screens/auth/metamask-login/metamask-login.state';
-import { useNear } from '@screens/auth/near-login/near.state';
-import { addMetamaskWallet, addNearWallet } from '@services/user.service';
-import { loginUser } from '@store/reducers/user.slice';
-import { useAppDispatch, useAppSelector } from '@store/store';
 import axios from 'axios';
-
 import { trackPromise } from 'react-promise-tracker';
+
+import { errorMessage } from '@constants/pop-up';
+
+import { useAppDispatch, useAppSelector } from '@store/store';
+import { loginUser } from '@store/reducers/user.slice';
+
+import { addMetamaskWallet } from '@services/user.service';
+import { useNear } from '@screens/auth/near-login/near.state';
+import { useMetamask } from '@screens/auth/metamask-login/metamask-login.state';
+import { ENV_VARIABLES } from '@constants/config';
 
 export const useProfileState = () => {
   const user = useAppSelector((state) => state.user);
@@ -35,18 +38,10 @@ export const useProfileState = () => {
   const nearBtnHandler = async () => {
     const connect = useNear();
     const walletConnection = await connect();
-    const wallet = walletConnection.getAccountId();
-    if (wallet) {
-      try {
-        const { data } = await trackPromise(
-          addNearWallet({ wallet, userId: user.id })
-        );
 
-        dispatch(loginUser(data));
-      } catch (error) {}
-    } else {
-      walletConnection.requestSignIn({});
-    }
+    walletConnection.requestSignIn({
+      successUrl: `${ENV_VARIABLES.WEB_URL}near-success?user_id=${user.id}`,
+    });
   };
   return { metamaskBtnHadler, nearBtnHandler };
 };

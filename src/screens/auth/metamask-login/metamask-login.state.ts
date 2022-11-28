@@ -1,3 +1,4 @@
+import { errorMessage } from '@constants/pop-up';
 import Web3 from 'web3';
 
 export const useMetamask = () => {
@@ -8,7 +9,7 @@ export const useMetamask = () => {
     } else if (window.web3) {
       provider = window.web3.currentProvider;
     } else {
-      alert('You should enable Metamask');
+      return errorMessage('You should enable Metamask').fire();
     }
     return provider;
   };

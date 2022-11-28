@@ -105,8 +105,8 @@ export interface IHeadCell {
 }
 export const HEAD_TITLE: IHeadCell[] = [
   { id: 'email', title: 'EMAIL' },
-  { id: 'wallet', title: 'WALLET NUMBER' },
+  { id: 'wallets', title: 'WALLET NUMBER' },
   { id: 'lastLogin', title: 'LAST LOGIN' },
   { id: 'amountLogin', title: 'NUMBER OF LOGINS' },
-  { id: 'hoursSpent', title: 'SITTING STRAIGHT HOURS' },
+  { id: 'results', title: 'SITTING STRAIGHT HOURS' },
 ];

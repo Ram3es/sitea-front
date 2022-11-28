@@ -6,5 +6,5 @@ export const errorMessage = (text: string) =>
     icon: 'error',
     title: 'Oops...',
     text,
-    confirmButtonColor: `${COLORS.grey}`,
+    confirmButtonColor: `${COLORS.lightBlue}`,
   });

@@ -20,8 +20,9 @@ import { ROUTES } from '@constants/routes';
 import { UsersTableStyles as Styled } from './users-table.styles';
 import { useCallback } from 'react';
 import { trackPromise } from 'react-promise-tracker';
-import { getAllUses } from '@services/admin.service';
+
 import { useEffect } from 'react';
+import { getAllUses } from '@services/admin.service';
 
 export const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -43,11 +44,7 @@ export const UsersTable = () => {
   const getAllUsers = useCallback(async () => {
     try {
       const { data } = await trackPromise(getAllUses());
-
-      const formatedData = data.map((user) => {
-        return { ...user };
-      });
-      setUsers(formatedData);
+      setUsers(data);
     } catch (error) {}
   }, []);
 
