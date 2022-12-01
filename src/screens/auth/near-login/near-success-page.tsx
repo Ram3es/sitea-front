@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 import { trackPromise } from 'react-promise-tracker';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
@@ -12,8 +12,9 @@ import { errorMessage } from '@constants/pop-up';
 import { storage } from '@services/storage';
 import { nearLogin } from '@services/auth.service';
 import { addNearWallet } from '@services/user.service';
+import { PROMISES_AREA } from '@constants/promises-area';
 
-export const NearSuccessPage = () => {
+export const NearSuccessPage: FC = () => {
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
   const wallet = searchParams.get('account_id');
@@ -22,7 +23,10 @@ export const NearSuccessPage = () => {
   const nearLoginWith = useCallback(async () => {
     if (wallet) {
       try {
-        const { data } = await trackPromise(nearLogin({ wallet }));
+        const { data } = await trackPromise(
+          nearLogin({ wallet }),
+          PROMISES_AREA.login
+        );
 
         storage.setToken(data.token);
         dispatch(loginUser(data.user));
@@ -37,7 +41,10 @@ export const NearSuccessPage = () => {
   const addWalletToUser = useCallback(async () => {
     if (userId && wallet) {
       try {
-        const { data } = await trackPromise(addNearWallet({ wallet, userId }));
+        const { data } = await trackPromise(
+          addNearWallet({ wallet, userId }),
+          PROMISES_AREA.addNearWallet
+        );
         dispatch(loginUser(data));
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -54,6 +61,6 @@ export const NearSuccessPage = () => {
   return userId ? (
     <Navigate to={ROUTES.profile} />
   ) : (
-    <Navigate to={ROUTES.dashboard} />
+    <Navigate to={ROUTES.main} />
   );
 };

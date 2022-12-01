@@ -9,7 +9,13 @@ export const TableStyles = {
     padding: 20px;
     border: 2px solid black;
     border-radius: 8px;
-    margin-right: 30px;
+
+    ${Media.mobile`
+    margin:0;
+    border: 2px solid black;
+    padding:10px;
+
+    `}
 
     ${Media.tablet`
     overflow-x: auto;

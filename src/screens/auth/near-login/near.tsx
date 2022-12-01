@@ -19,13 +19,13 @@ export const NearLoginButton: FC = () => {
     if (wallet) {
       try {
         const { data } = await trackPromise(nearLogin({ wallet }));
-
         storage.setToken(data.token);
         dispatch(loginUser(data.user));
       } catch (error) {}
     } else {
       walletConnection.requestSignIn({
         successUrl: `${ENV_VARIABLES.WEB_URL}near-success`,
+        failureUrl: `${ENV_VARIABLES.WEB_URL}near-failure`,
       });
     }
   };

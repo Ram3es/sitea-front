@@ -20,6 +20,7 @@ import { PrivateRoutes } from './private-routes';
 import { NearSuccessPage } from '@screens/auth/near-login/near-success-page';
 import { PrivateAdmin } from './admin-private-route';
 import { PrivateUser } from './user-private-route';
+import { NearFailurePage } from '@screens/auth/near-login/near-failure-page';
 
 export const App: FC = () => {
   return (
@@ -40,6 +41,7 @@ export const App: FC = () => {
             </Route>
           </Route>
           <Route path={ROUTES.nearSuccessPage} element={<NearSuccessPage />} />
+          <Route path={ROUTES.nearFailurePage} element={<NearFailurePage />} />
           <Route path={ROUTES.login} element={<SignIn />} />
           <Route
             path={ROUTES.noMatch}

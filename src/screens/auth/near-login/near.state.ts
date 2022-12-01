@@ -1,6 +1,15 @@
 import * as nearAPI from 'near-api-js';
 
 export const useNear = () => {
+  // const nearMainConf = {
+  //   networkId: 'mainnet',
+  //   keyStore: new nearAPI.keyStores.BrowserLocalStorageKeyStore(),
+  //   nodeUrl: 'https://rpc.mainnet.near.org',
+  //   walletUrl: 'https://wallet.mainnet.near.org',
+  //   helperUrl: 'https://helper.mainnet.near.org',
+  //   explorerUrl: 'https://explorer.mainnet.near.org',
+  // };
+
   const nearConfig = {
     networkId: 'testnet',
     keyStore: new nearAPI.keyStores.BrowserLocalStorageKeyStore(),

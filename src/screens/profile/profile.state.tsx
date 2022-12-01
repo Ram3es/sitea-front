@@ -10,6 +10,7 @@ import { addMetamaskWallet } from '@services/user.service';
 import { useNear } from '@screens/auth/near-login/near.state';
 import { useMetamask } from '@screens/auth/metamask-login/metamask-login.state';
 import { ENV_VARIABLES } from '@constants/config';
+import { PROMISES_AREA } from '@constants/promises-area';
 
 export const useProfileState = () => {
   const user = useAppSelector((state) => state.user);
@@ -23,7 +24,8 @@ export const useProfileState = () => {
       const wallet = account[0];
       try {
         const { data } = await trackPromise(
-          addMetamaskWallet({ wallet, userId: user.id })
+          addMetamaskWallet({ wallet, userId: user.id }),
+          PROMISES_AREA.addMetamask
         );
 
         dispatch(loginUser(data));
@@ -41,6 +43,7 @@ export const useProfileState = () => {
 
     walletConnection.requestSignIn({
       successUrl: `${ENV_VARIABLES.WEB_URL}near-success?user_id=${user.id}`,
+      failureUrl: `${ENV_VARIABLES.WEB_URL}near-failure`,
     });
   };
   return { metamaskBtnHadler, nearBtnHandler };

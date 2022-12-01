@@ -7,6 +7,8 @@ import { useAppSelector } from '@store/store';
 import { GoogleButton } from '@screens/auth/gogle-login';
 
 import { useProfileState } from './profile.state';
+import { Loader } from '@components/loader';
+import { PROMISES_AREA } from '@constants/promises-area';
 
 export const Profile: FC = () => {
   const user = useAppSelector((state) => state.user);
@@ -21,33 +23,43 @@ export const Profile: FC = () => {
       <Styled.RowWrapper>
         <Styled.Title>Email:</Styled.Title>
         {user?.email ? (
-          <Styled.Title>{user?.email}</Styled.Title>
+          <Styled.Row>{user?.email}</Styled.Row>
         ) : (
-          <GoogleButton userId={user?.id} />
+          <Styled.BtnWrapper>
+            <GoogleButton userId={user?.id} />
+          </Styled.BtnWrapper>
         )}
       </Styled.RowWrapper>
       <Styled.RowWrapper>
         <Styled.Title>NEAR Wallet :</Styled.Title>
         {nearWallet ? (
-          <Styled.Title>{nearWallet}</Styled.Title>
+          <Styled.Row>{nearWallet}</Styled.Row>
         ) : (
-          <Button
-            onClick={nearBtnHandler}
-            minWidth={220}
-            title="Login with Near wallet"
-          />
+          <Styled.BtnWrapper>
+            <Loader width="30" area={PROMISES_AREA.addNearWallet}>
+              <Button
+                onClick={nearBtnHandler}
+                minWidth={220}
+                title="Login with Near wallet"
+              />
+            </Loader>
+          </Styled.BtnWrapper>
         )}
       </Styled.RowWrapper>
       <Styled.RowWrapper>
         <Styled.Title>Metamask:</Styled.Title>
         {wallet ? (
-          <Styled.Title>{wallet}</Styled.Title>
+          <Styled.Row>{wallet}</Styled.Row>
         ) : (
-          <Button
-            onClick={metamaskBtnHadler}
-            minWidth={220}
-            title="Login with Metamask"
-          />
+          <Styled.BtnWrapper>
+            <Loader width="30" area={PROMISES_AREA.addMetamask}>
+              <Button
+                onClick={metamaskBtnHadler}
+                minWidth={220}
+                title="Login with Metamask"
+              />
+            </Loader>
+          </Styled.BtnWrapper>
         )}
       </Styled.RowWrapper>
     </Styled.Container>

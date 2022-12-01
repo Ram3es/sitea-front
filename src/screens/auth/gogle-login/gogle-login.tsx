@@ -17,6 +17,7 @@ import { googleAuth } from '@services/auth.service';
 import { errorMessage } from '@constants/pop-up';
 import { useAppDispatch } from '@store/store';
 import { loginUser } from '@store/reducers/user.slice';
+import { PROMISES_AREA } from '@constants/promises-area';
 
 interface IGoogleButtonProps {
   userId?: string;
@@ -41,7 +42,8 @@ export const GoogleButton: FC<IGoogleButtonProps> = ({ userId }) => {
 
     try {
       const { data } = await trackPromise(
-        googleAuth({ token: accessToken, userId })
+        googleAuth({ token: accessToken, userId }),
+        PROMISES_AREA.login
       );
 
       if (!userId) {

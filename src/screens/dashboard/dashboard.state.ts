@@ -1,6 +1,7 @@
 import { trackPromise } from 'react-promise-tracker';
 import { useCallback, useState, useEffect } from 'react';
 import { getResultsByUser } from '@services/user.service';
+import { PROMISES_AREA } from '@constants/promises-area';
 
 export const useDashboardState = (userId: string) => {
   const [userWithResult, setUserWithResult] = useState<IUserWithResults | null>(
@@ -9,14 +10,17 @@ export const useDashboardState = (userId: string) => {
 
   const getUserWithResults = useCallback(async () => {
     try {
-      const { data } = await trackPromise(getResultsByUser(userId));
+      const { data } = await trackPromise(
+        getResultsByUser(userId),
+        PROMISES_AREA.getUserWithReasults
+      );
 
       setUserWithResult(data);
     } catch (error) {}
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     getUserWithResults();
-  }, []);
+  }, [userId]);
   return { userWithResult };
 };

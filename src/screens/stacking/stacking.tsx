@@ -1,5 +1,5 @@
 import React from 'react';
 
 export const Stacking = () => {
-  return <div>Stacking</div>;
+  return <div>Staking</div>;
 };

@@ -21,7 +21,9 @@ export const UserInfo: FC = () => {
       <Styled.Wrapper>
         <Styled.BtnBack onClick={handleGoBack}>Back</Styled.BtnBack>
         <Styled.Title>{`User: ${
-          userWithResult?.email || userWithResult?.wallets[0]?.wallet
+          userWithResult?.email ||
+          userWithResult?.wallets[0]?.wallet ||
+          userWithResult?.nearWallets[0]?.wallet
         }`}</Styled.Title>
       </Styled.Wrapper>
       <UserInfoTable results={userWithResult?.results} />

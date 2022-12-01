@@ -9,6 +9,7 @@ import { storage } from '@services/storage/storage';
 import { walletLogin } from '@services/auth.service';
 
 import { useMetamask } from './metamask-login.state';
+import { PROMISES_AREA } from '@constants/promises-area';
 
 export const MetamaskButton: FC = () => {
   const dispatch = useAppDispatch();
@@ -19,7 +20,10 @@ export const MetamaskButton: FC = () => {
 
     if (accountId) {
       const wallet = accountId?.[0];
-      const { data } = await trackPromise(walletLogin({ wallet }));
+      const { data } = await trackPromise(
+        walletLogin({ wallet }),
+        PROMISES_AREA.login
+      );
       storage.setToken(data.token);
 
       dispatch(loginUser(data.user));

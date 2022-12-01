@@ -27,8 +27,10 @@ export const SignInStyles = {
     font-size: 18px;
   `,
   ButtonWrapper: styled.div`
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin-top: 40px;
+    align-items: center;
 
     button {
       margin: 0 auto 20px;

@@ -23,6 +23,8 @@ import { trackPromise } from 'react-promise-tracker';
 
 import { useEffect } from 'react';
 import { getAllUses } from '@services/admin.service';
+import axios from 'axios';
+import { errorMessage } from '@constants/pop-up';
 
 export const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -30,9 +32,16 @@ export const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
     padding: theme.spacing(3),
     overflow: 'auto',
+    ['@media(max-width: 600px)']: {
+      padding: theme.spacing(1),
+      margin: theme.spacing(0),
+    },
   },
   searchInput: {
     width: '75%',
+    ['@media(max-width: 600px)']: {
+      width: '100%',
+    },
   },
 }));
 
@@ -45,7 +54,11 @@ export const UsersTable = () => {
     try {
       const { data } = await trackPromise(getAllUses());
       setUsers(data);
-    } catch (error) {}
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        return errorMessage(error?.response?.data.message).fire();
+      }
+    }
   }, []);
 
   const classes = useStyles();
@@ -89,30 +102,32 @@ export const UsersTable = () => {
             />
           </Toolbar>
           <TablePagination />
-          <Table>
-            <TableHead />
-            <TableBody>
-              {pagingAndSorting().map((user) => {
-                const onClick = () => handleInfoUser(user.id);
+          <Styled.TableContainer>
+            <Table>
+              <TableHead />
+              <TableBody>
+                {pagingAndSorting().map((user) => {
+                  const onClick = () => handleInfoUser(user.id);
 
-                return (
-                  <TableRow onClick={onClick} key={user.id}>
-                    <TableCell style={{ minWidth: '200px' }}>
-                      {user.email}
-                    </TableCell>
-                    <TableCell>{user.wallets}</TableCell>
-                    <TableCell>{0}</TableCell>
-                    <TableCell align="center" width="40px">
-                      {0}
-                    </TableCell>
-                    <TableCell align="center" width="40px">
-                      {user.results}
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+                  return (
+                    <TableRow onClick={onClick} key={user.id}>
+                      <TableCell style={{ minWidth: '200px' }}>
+                        {user.email}
+                      </TableCell>
+                      <TableCell>{user.wallets}</TableCell>
+                      <TableCell>{0}</TableCell>
+                      <TableCell align="center" width="40px">
+                        {0}
+                      </TableCell>
+                      <TableCell align="center" width="40px">
+                        {user.results}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </Styled.TableContainer>
           <TablePagination />
         </Paper>
       </Styled.Container>

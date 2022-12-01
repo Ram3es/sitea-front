@@ -9,7 +9,7 @@ export const ButtonSyles = styled.button<IButtonTypings>`
   align-items: center;
   justify-content: center;
   min-width: ${({ minWidth }) => (minWidth ? `${minWidth}px` : '130px')};
-  min-height: 40px;
+  height: 40px;
   border: 2px solid ${COLORS.grey};
   border-radius: 20px;
   padding: 7px 15px;

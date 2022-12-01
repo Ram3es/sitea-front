@@ -7,7 +7,8 @@ import { Media } from '@styles/media';
 export const SidebarStyles = {
   Container: styled.aside`
     width: 20%;
-    display: block;
+    display: flex;
+    flex-direction: column;
     padding: 40px;
 
     button {
@@ -20,6 +21,21 @@ export const SidebarStyles = {
 
     ${Media.tablet`
     padding:10px;
+    `}
+
+    
+    ${Media.mobile`
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    padding:20px 5px;
+    div{
+      margin:0;
+     a {
+      min-width: 110px;
+      padding: 5px 15px 8px;
+     }
+    }
     `}
   `,
 

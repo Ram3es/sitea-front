@@ -8,15 +8,41 @@ export const ProfileStyles = {
     ${Media.tablet`
     padding: 20px;
     `}
+
+    ${Media.mobile`
+    padding: 0
+    `}
   `,
   RowWrapper: styled.div`
     display: flex;
+    align-items: center;
     padding: 10px;
+
+    ${Media.mobile`
+    padding: 10px 0;
+    `}
   `,
   Title: styled.div`
-    width: 140px;
+    min-width: 140px;
     padding: 5px;
     font-size: 18px;
     font-weight: 600;
+
+    ${Media.mobile`
+    min-width: 90px;
+    font-size: 16px;
+    `}
+  `,
+  Row: styled.div`
+    word-break: break-all;
+    font-size: 18px;
+    font-weight: 600;
+
+    ${Media.mobile`
+    font-size: 14px;
+    `}
+  `,
+  BtnWrapper: styled.div`
+    margin-left: 10px;
   `,
 };
