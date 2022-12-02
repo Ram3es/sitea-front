@@ -23,20 +23,22 @@ export const ProfileStyles = {
     `}
   `,
   Title: styled.div`
-    min-width: 140px;
+    width: 140px;
     padding: 5px;
     font-size: 18px;
     font-weight: 600;
 
     ${Media.mobile`
-    min-width: 90px;
+    width: 90px;
     font-size: 16px;
+
     `}
   `,
   Row: styled.div`
     word-break: break-all;
     font-size: 18px;
     font-weight: 600;
+    margin-left: 10px;
 
     ${Media.mobile`
     font-size: 14px;

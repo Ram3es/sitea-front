@@ -2,16 +2,15 @@ import { FC, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '@store/store';
+import { Loader } from '@components/loader';
 import { ROUTES } from '@constants/routes';
+import { PROMISES_AREA } from '@constants/promises-area';
 import { storage } from '@services/storage/storage';
 
 import { SignInStyles as Styled } from './sign-in.styles';
-
 import { GoogleButton } from '../gogle-login/gogle-login';
 import { MetamaskButton } from '../metamask-login/metamask-login';
 import { NearLoginButton } from '../near-login/near';
-import { Loader } from '@components/loader';
-import { PROMISES_AREA } from '@constants/promises-area';
 
 export const SignIn: FC = () => {
   const user = useAppSelector((state) => state.user);

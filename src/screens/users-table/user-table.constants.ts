@@ -110,3 +110,7 @@ export const HEAD_TITLE: IHeadCell[] = [
   { id: 'amountLogin', title: 'NUMBER OF LOGINS' },
   { id: 'results', title: 'SITTING STRAIGHT HOURS' },
 ];
+
+export const DEVICE_WIDTH = {
+  mobile: '600px',
+};

@@ -1,5 +1,6 @@
-import { trackPromise } from 'react-promise-tracker';
 import { useCallback, useState, useEffect } from 'react';
+import { trackPromise } from 'react-promise-tracker';
+
 import { getResultsByUser } from '@services/user.service';
 import { PROMISES_AREA } from '@constants/promises-area';
 

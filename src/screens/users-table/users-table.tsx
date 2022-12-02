@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { trackPromise } from 'react-promise-tracker';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import { useTable } from '@components/mui-table/useTable';
 import { Search } from '@material-ui/icons';
@@ -13,18 +16,12 @@ import {
   Toolbar,
 } from '@material-ui/core';
 
-import { HEAD_TITLE } from './user-table.constants';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '@constants/routes';
+import { errorMessage } from '@constants/pop-up';
+import { getAllUses } from '@services/admin.service';
+
+import { DEVICE_WIDTH, HEAD_TITLE } from './user-table.constants';
 
 import { UsersTableStyles as Styled } from './users-table.styles';
-import { useCallback } from 'react';
-import { trackPromise } from 'react-promise-tracker';
-
-import { useEffect } from 'react';
-import { getAllUses } from '@services/admin.service';
-import axios from 'axios';
-import { errorMessage } from '@constants/pop-up';
 
 export const useStyles = makeStyles((theme) => ({
   pageContent: {
@@ -32,14 +29,14 @@ export const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2),
     padding: theme.spacing(3),
     overflow: 'auto',
-    ['@media(max-width: 600px)']: {
+    [`@media(max-width:${DEVICE_WIDTH.mobile})`]: {
       padding: theme.spacing(1),
       margin: theme.spacing(0),
     },
   },
   searchInput: {
     width: '75%',
-    ['@media(max-width: 600px)']: {
+    [`@media(max-width:${DEVICE_WIDTH.mobile})`]: {
       width: '100%',
     },
   },
@@ -79,7 +76,7 @@ export const UsersTable = () => {
   };
 
   const handleInfoUser = (userId: string) =>
-    navigate({ pathname: `/${ROUTES.admin}/${userId}` });
+    navigate({ pathname: `/user/${userId}` });
 
   return (
     <>

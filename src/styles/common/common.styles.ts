@@ -1,13 +1,14 @@
 import { Media } from '@styles/media';
 import styled from 'styled-components';
-export const MainStyles = {
+
+export const CommonStyles = {
   Container: styled.div`
     display: flex;
     height: calc(100vh - 90px);
 
     ${Media.mobile`
-    flex-direction: column;
-    `}
+  flex-direction: column;
+  `}
   `,
 
   Content: styled.main`
@@ -15,7 +16,7 @@ export const MainStyles = {
     padding: 5px;
 
     ${Media.mobile`
-    width: 100%;
-    `}
+width: 100%;
+`}
   `,
 };

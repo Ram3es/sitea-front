@@ -1,7 +1,14 @@
+import { MainContainer } from '@components/container';
+
 import { Loader } from '@components/loader';
+
 import { UserInfoTable } from '@components/user-info-table';
 import { PROMISES_AREA } from '@constants/promises-area';
+import { ROLES } from '@constants/roles';
+import { UsersTable } from '@screens/users-table';
+
 import { useAppSelector } from '@store/store';
+
 import { getTotalHours } from '@utils/get-total-hours';
 import React, { useMemo } from 'react';
 
@@ -19,14 +26,16 @@ export const Dashboard = () => {
     [results]
   );
 
-  return results ? (
-    <>
-      <Loader area={PROMISES_AREA.getUserWithReasults}>
-        <Styled.TotalStreight>{`Total straight: ${totalHours} hrs`}</Styled.TotalStreight>
-        <UserInfoTable results={results} />
-      </Loader>
-    </>
-  ) : (
-    <></>
+  return (
+    <MainContainer>
+      {user.role === ROLES.admin ? (
+        <UsersTable />
+      ) : (
+        <Loader area={PROMISES_AREA.getUserWithReasults}>
+          <Styled.TotalStreight>{`Total straight: ${totalHours} hrs`}</Styled.TotalStreight>
+          <UserInfoTable results={results} />
+        </Loader>
+      )}
+    </MainContainer>
   );
 };

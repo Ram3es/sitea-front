@@ -2,6 +2,8 @@ import axios from 'axios';
 import { trackPromise } from 'react-promise-tracker';
 
 import { errorMessage } from '@constants/pop-up';
+import { ENV_VARIABLES } from '@constants/config';
+import { PROMISES_AREA } from '@constants/promises-area';
 
 import { useAppDispatch, useAppSelector } from '@store/store';
 import { loginUser } from '@store/reducers/user.slice';
@@ -9,8 +11,6 @@ import { loginUser } from '@store/reducers/user.slice';
 import { addMetamaskWallet } from '@services/user.service';
 import { useNear } from '@screens/auth/near-login/near.state';
 import { useMetamask } from '@screens/auth/metamask-login/metamask-login.state';
-import { ENV_VARIABLES } from '@constants/config';
-import { PROMISES_AREA } from '@constants/promises-area';
 
 export const useProfileState = () => {
   const user = useAppSelector((state) => state.user);

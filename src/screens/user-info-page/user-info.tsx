@@ -1,10 +1,11 @@
 import { FC } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { MainContainer } from '@components/container';
 import { UserInfoTable } from '@components/user-info-table';
 
-import { UserInfoStyles as Styled } from './user-info.styles';
 import { useDashboardState } from '@screens/dashboard/dashboard.state';
+import { UserInfoStyles as Styled } from './user-info.styles';
 
 export const UserInfo: FC = () => {
   const { userId } = useParams();
@@ -18,15 +19,17 @@ export const UserInfo: FC = () => {
 
   return (
     <>
-      <Styled.Wrapper>
-        <Styled.BtnBack onClick={handleGoBack}>Back</Styled.BtnBack>
-        <Styled.Title>{`User: ${
-          userWithResult?.email ||
-          userWithResult?.wallets[0]?.wallet ||
-          userWithResult?.nearWallets[0]?.wallet
-        }`}</Styled.Title>
-      </Styled.Wrapper>
-      <UserInfoTable results={userWithResult?.results} />
+      <MainContainer>
+        <Styled.Wrapper>
+          <Styled.BtnBack onClick={handleGoBack}>Back</Styled.BtnBack>
+          <Styled.Title>{`User: ${
+            userWithResult?.email ||
+            userWithResult?.wallets[0]?.wallet ||
+            userWithResult?.nearWallets[0]?.wallet
+          }`}</Styled.Title>
+        </Styled.Wrapper>
+        <UserInfoTable results={userWithResult?.results} />
+      </MainContainer>
     </>
   );
 };

@@ -1,5 +1,5 @@
-import { useAppSelector } from '@store/store';
 import { FC } from 'react';
+import { useAppSelector } from '@store/store';
 
 import { navItems } from './sidebar.constants';
 import { SidebarStyles as Styled } from './sidebar.styles';
@@ -13,7 +13,9 @@ export const SideBar: FC = () => {
       {navItems[userRole]?.map((item) => {
         return (
           <Styled.WrapNavElem key={item.title}>
-            <Styled.NavElement to={item.route}>{item.title}</Styled.NavElement>
+            <Styled.NavElement end={true} to={item.route}>
+              {item.title}
+            </Styled.NavElement>
           </Styled.WrapNavElem>
         );
       })}

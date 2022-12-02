@@ -1,8 +1,8 @@
-import { Media } from './../../styles/media';
 import styled from 'styled-components';
-
-import { COLORS } from '@styles/colors';
 import { TableCell, TableHead } from '@material-ui/core';
+
+import { Media } from '@styles/media';
+import { COLORS } from '@styles/colors';
 
 export const TableStyles = {
   Wrapper: styled.div`

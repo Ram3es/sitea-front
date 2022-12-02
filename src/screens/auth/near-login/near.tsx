@@ -1,12 +1,16 @@
 import { FC } from 'react';
+import { trackPromise } from 'react-promise-tracker';
+
+import { ENV_VARIABLES } from '@constants/config';
+
 import { Button } from '@components/button';
 import { storage } from '@services/storage/storage';
-import { trackPromise } from 'react-promise-tracker';
 import { nearLogin } from '@services/auth.service';
-import { loginUser } from '@store/reducers/user.slice';
+
 import { useAppDispatch } from '@store/store';
+import { loginUser } from '@store/reducers/user.slice';
+
 import { useNear } from './near.state';
-import { ENV_VARIABLES } from '@constants/config';
 
 export const NearLoginButton: FC = () => {
   const dispatch = useAppDispatch();
