@@ -1,19 +1,18 @@
-import { MainContainer } from '@components/container';
+import { useMemo } from 'react';
+
+import { ROLES } from '@constants/roles';
+import { PROMISES_AREA } from '@constants/promises-area';
 
 import { Loader } from '@components/loader';
-
+import { ChartBar } from '@components/chartbar';
+import { MainContainer } from '@components/container';
 import { UserInfoTable } from '@components/user-info-table';
-import { PROMISES_AREA } from '@constants/promises-area';
-import { ROLES } from '@constants/roles';
-import { UsersTable } from '@screens/users-table';
 
 import { useAppSelector } from '@store/store';
-
+import { UsersTable } from '@screens/users-table';
 import { getTotalHours } from '@utils/get-total-hours';
-import React, { useMemo } from 'react';
 
 import { useDashboardState } from './dashboard.state';
-
 import { DashboardStyles as Styled } from './dashboard.styles';
 
 export const Dashboard = () => {
@@ -32,6 +31,9 @@ export const Dashboard = () => {
         <UsersTable />
       ) : (
         <Loader area={PROMISES_AREA.getUserWithReasults}>
+          <Styled.ChartWrapper>
+            <ChartBar results={results} />
+          </Styled.ChartWrapper>
           <Styled.TotalStreight>{`Total straight: ${totalHours} hrs`}</Styled.TotalStreight>
           <UserInfoTable results={results} />
         </Loader>

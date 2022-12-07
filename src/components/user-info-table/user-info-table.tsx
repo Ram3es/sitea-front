@@ -1,6 +1,11 @@
 import { FC } from 'react';
 
-import { Table as MuiTable, TableBody, TableRow } from '@material-ui/core';
+import {
+  makeStyles,
+  Table as MuiTable,
+  TableBody,
+  TableRow,
+} from '@material-ui/core';
 
 import { HEAD_CELL } from './user-info-table.constants';
 import { TableStyles as Styled } from './user-info-tabsle.styles';
@@ -10,11 +15,19 @@ interface IUserInfoTableProps {
   results?: IResult[];
 }
 
+const useStyles = makeStyles(() => ({
+  header: {
+    position: 'sticky',
+    top: 0,
+  },
+}));
+
 export const UserInfoTable: FC<IUserInfoTableProps> = ({ results }) => {
+  const classes = useStyles();
   return (
     <Styled.Wrapper>
       <MuiTable>
-        <Styled.Head>
+        <Styled.Head className={classes.header}>
           <TableRow>
             {HEAD_CELL.map((cell) => (
               <Styled.Cell key={cell.id}>{cell.title}</Styled.Cell>

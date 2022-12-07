@@ -6,14 +6,18 @@ import { COLORS } from '@styles/colors';
 
 export const TableStyles = {
   Wrapper: styled.div`
-    padding: 20px;
+    max-height: 500px;
+    overflow: auto;
     border: 2px solid black;
     border-radius: 8px;
+    margin: 0 15px 15px;
 
     ${Media.mobile`
+    max-height: 390px;
     margin:0;
     border: 2px solid black;
-    padding:10px;
+
+   
 
     `}
 

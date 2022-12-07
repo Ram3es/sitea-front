@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const CommonStyles = {
   Container: styled.div`
     display: flex;
-    height: calc(100vh - 90px);
+    height: auto;
 
     ${Media.mobile`
   flex-direction: column;
