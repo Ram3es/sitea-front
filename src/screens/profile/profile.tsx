@@ -28,7 +28,7 @@ export const Profile: FC = () => {
             <Styled.Row>{user?.email}</Styled.Row>
           ) : (
             <Styled.BtnWrapper>
-              <GoogleButton userId={user?.id} />
+              <GoogleButton title="LOGIN WITH GOOGLE" userId={user?.id} />
             </Styled.BtnWrapper>
           )}
         </Styled.RowWrapper>
@@ -42,7 +42,7 @@ export const Profile: FC = () => {
                 <Button
                   onClick={nearBtnHandler}
                   minWidth={220}
-                  title="Login with Near wallet"
+                  title="LOGIN WITH NEAR WALLET"
                 />
               </Loader>
             </Styled.BtnWrapper>
@@ -58,7 +58,7 @@ export const Profile: FC = () => {
                 <Button
                   onClick={metamaskBtnHadler}
                   minWidth={220}
-                  title="Login with Metamask"
+                  title="LOGIN WITH METAMASK"
                 />
               </Loader>
             </Styled.BtnWrapper>

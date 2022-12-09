@@ -29,11 +29,5 @@ export const MetamaskButton: FC = () => {
       dispatch(loginUser(data.user));
     }
   };
-  return (
-    <Button
-      onClick={handleConnect}
-      title="Login with Metamask"
-      minWidth={220}
-    />
-  );
+  return <Button onClick={handleConnect} title="METAMASK" minWidth={220} />;
 };

@@ -1,31 +1,28 @@
-import React, { FC } from 'react';
-import { useNavigate } from 'react-router';
+import { FC } from 'react';
+import { useLocation } from 'react-router';
 
-import { ROUTES } from '@constants/routes';
-import { Button } from '@components/button';
-import { storage } from '@services/storage/storage';
 import { useAppSelector } from '@store/store';
 
 import { HeaderStyles as Styled } from './header.styles';
+import { ROUTE_TITLE } from './header.constants';
 
 export const Header: FC = () => {
-  const navigate = useNavigate();
   const user = useAppSelector((state) => state.user);
-
-  const logoutHandler = () => {
-    storage.removeToken();
-    navigate(ROUTES.login, { replace: true });
-  };
+  const { pathname } = useLocation();
 
   const walletNumber = user?.wallets[0]?.wallet;
   const nearNumber = user?.nearWallets[0]?.wallet;
 
   return (
     <Styled.Wrapper>
-      <Button title="Logout" onClick={logoutHandler} />
-      <Styled.UserEmail>
-        {user.email || walletNumber || nearNumber}
-      </Styled.UserEmail>
+      <Styled.Title>{ROUTE_TITLE[pathname]}</Styled.Title>
+
+      <Styled.UserInfoWrapper>
+        <p>Welcome</p>
+        <Styled.UserInfo>
+          {user.email || walletNumber || nearNumber}
+        </Styled.UserInfo>
+      </Styled.UserInfoWrapper>
     </Styled.Wrapper>
   );
 };

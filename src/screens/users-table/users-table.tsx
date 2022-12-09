@@ -20,7 +20,6 @@ import { errorMessage } from '@constants/pop-up';
 import { getAllUses } from '@services/admin.service';
 
 import { DEVICE_WIDTH, HEAD_TITLE } from './user-table.constants';
-
 import { UsersTableStyles as Styled } from './users-table.styles';
 
 export const useStyles = makeStyles((theme) => ({

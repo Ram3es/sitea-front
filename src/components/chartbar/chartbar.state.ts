@@ -1,8 +1,9 @@
+import { COLORS } from '@styles/colors';
 import { DATE_OPTIONS } from '@constants/format';
 import { useState } from 'react';
 
 export const useChartBarState = (results: IResult[] | undefined) => {
-  const [periodDays, setPeriodDays] = useState(6);
+  const [periodDays] = useState(6);
 
   const renderResults = results
     ?.sort((a, b) => Date.parse(a.day) - Date.parse(b.day))
@@ -19,26 +20,20 @@ export const useChartBarState = (results: IResult[] | undefined) => {
       {
         label: 'Correct',
         data: renderResults?.map((result) => result.correct),
-        backgroundColor: '#00A651',
+        backgroundColor: `${COLORS.green}`,
         stack: 'Stack 0',
       },
       {
         label: 'Hunched',
         data: renderResults?.map((result) => result.hunched),
-        backgroundColor: '#FFD530',
+        backgroundColor: `${COLORS.violet}`,
         stack: 'Stack 1',
       },
       {
         label: 'Incorrect',
         data: renderResults?.map((result) => result.incorrect),
-        backgroundColor: '#FF000E',
+        backgroundColor: `${COLORS.red}`,
         stack: 'Stack 2',
-      },
-      {
-        label: 'Away',
-        data: renderResults?.map((result) => result.away),
-        backgroundColor: '#00AEEF',
-        stack: 'Stack 3',
       },
     ],
   };

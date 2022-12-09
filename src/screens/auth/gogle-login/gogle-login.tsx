@@ -21,9 +21,10 @@ import { PROMISES_AREA } from '@constants/promises-area';
 
 interface IGoogleButtonProps {
   userId?: string;
+  title?: string;
 }
 
-export const GoogleButton: FC<IGoogleButtonProps> = ({ userId }) => {
+export const GoogleButton: FC<IGoogleButtonProps> = ({ userId, title }) => {
   const clientId = ENV_VARIABLES.GOOGLE_CLIENT_ID;
   const dispatch = useAppDispatch();
 
@@ -63,7 +64,7 @@ export const GoogleButton: FC<IGoogleButtonProps> = ({ userId }) => {
       onSuccess={handleSuccess}
       cookiePolicy={'single_host_origin'}
       render={(renderProps) => (
-        <Button {...renderProps} title={'Login with Google'} minWidth={220} />
+        <Button {...renderProps} title={title || 'GOOGLE'} minWidth={220} />
       )}
     />
   );

@@ -1,3 +1,4 @@
+import { COLORS } from '@styles/colors';
 import { Media } from '@styles/media';
 import styled from 'styled-components';
 
@@ -12,8 +13,10 @@ export const CommonStyles = {
   `,
 
   Content: styled.main`
+    min-height: 100vh;
     width: 80%;
-    padding: 5px;
+    padding: 20px;
+    background-color: ${COLORS.bcgLightGrey};
 
     ${Media.mobile`
 width: 100%;

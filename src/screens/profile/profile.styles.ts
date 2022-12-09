@@ -1,9 +1,15 @@
+import { COLORS } from '@styles/colors';
 import styled from 'styled-components';
 import { Media } from '@styles/media';
 
 export const ProfileStyles = {
   Container: styled.div`
-    padding: 20px 60px;
+    width: fit-content;
+    padding: 20px 60px 20px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: ${COLORS.violet};
+    margin-top: 50px;
 
     ${Media.tablet`
     padding: 20px;
@@ -23,10 +29,10 @@ export const ProfileStyles = {
     `}
   `,
   Title: styled.div`
-    width: 140px;
+    width: 200px;
     padding: 5px;
-    font-size: 18px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
 
     ${Media.mobile`
     width: 90px;
@@ -46,5 +52,11 @@ export const ProfileStyles = {
   `,
   BtnWrapper: styled.div`
     margin-left: 10px;
+
+    button {
+      min-width: 280px;
+      color: ${COLORS.white};
+      background-color: ${COLORS.black};
+    }
   `,
 };

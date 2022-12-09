@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { COLORS } from '@styles/colors';
 import { IButtonTypings } from './button.typings';
 
 export const ButtonSyles = styled.button<IButtonTypings>`
@@ -9,9 +8,8 @@ export const ButtonSyles = styled.button<IButtonTypings>`
   align-items: center;
   justify-content: center;
   min-width: ${({ minWidth }) => (minWidth ? `${minWidth}px` : '130px')};
-  height: 40px;
-  border: 2px solid ${COLORS.grey};
-  border-radius: 20px;
+  height: 50px;
+  border-radius: 100px;
   padding: 7px 15px;
   font-size: 14px;
   font-weight: 400;

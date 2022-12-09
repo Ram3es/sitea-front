@@ -6,10 +6,11 @@ import {
   TableBody,
   TableRow,
 } from '@material-ui/core';
+import { COLORS } from '@styles/colors';
+import { DATE_OPTIONS } from '@constants/format';
 
 import { HEAD_CELL } from './user-info-table.constants';
 import { TableStyles as Styled } from './user-info-tabsle.styles';
-import { DATE_OPTIONS } from '@constants/format';
 
 interface IUserInfoTableProps {
   results?: IResult[];
@@ -19,6 +20,12 @@ const useStyles = makeStyles(() => ({
   header: {
     position: 'sticky',
     top: 0,
+  },
+  row: {
+    backgroundColor: `${COLORS.violet}`,
+  },
+  headRow: {
+    backgroundColor: `${COLORS.white}`,
   },
 }));
 
@@ -30,7 +37,9 @@ export const UserInfoTable: FC<IUserInfoTableProps> = ({ results }) => {
         <Styled.Head className={classes.header}>
           <TableRow>
             {HEAD_CELL.map((cell) => (
-              <Styled.Cell key={cell.id}>{cell.title}</Styled.Cell>
+              <Styled.Cell className={classes.headRow} key={cell.id}>
+                {cell.title}
+              </Styled.Cell>
             ))}
           </TableRow>
         </Styled.Head>
@@ -39,7 +48,7 @@ export const UserInfoTable: FC<IUserInfoTableProps> = ({ results }) => {
             const { day, away, correct, hunched, incorrect, id } = stat;
 
             return (
-              <TableRow key={id}>
+              <TableRow className={classes.row} key={id}>
                 <Styled.Cell>
                   {new Date(day).toLocaleString('en-GB', DATE_OPTIONS)}
                 </Styled.Cell>

@@ -8,9 +8,11 @@ import {
   TablePagination as MUIPagination,
   TableSortLabel,
 } from '@material-ui/core';
-import { IHeadCell } from '@screens/users-table/user-table.constants';
 import orderBy from 'lodash.orderby';
+
 import { getTotalHours } from '@utils/get-total-hours';
+import { IHeadCell } from '@screens/users-table/user-table.constants';
+import { COLORS } from '@styles/colors';
 
 interface IPropsElem {
   children?: React.ReactNode;
@@ -27,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& tbody td': { fontWeight: 400, fontSize: '14px' },
     '& tbody tr:hover': {
-      backgroundColor: '#fffbf2',
+      backgroundColor: `${COLORS.bcgLightGrey}`,
       cursor: 'pointer',
     },
   },

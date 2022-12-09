@@ -9,7 +9,8 @@ export const SidebarStyles = {
     width: 20%;
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    justify-content: space-between;
+    padding: 20px 40px 40px;
 
     button {
       margin: 0 auto 20px;
@@ -39,35 +40,43 @@ export const SidebarStyles = {
     `}
   `,
 
+  Wrapper: styled.div``,
+
+  NavContainer: styled.div`
+    margin-top: 45px;
+  `,
+
   NavElement: styled(NavLink)`
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 5px 25px 8px;
-    width: 100%;
-    font-size: 14px;
-    font-weight: 400;
-    border-radius: 20px;
-    background-color: 'tranparent';
-    border: 1px solid black;
     text-decoration: none;
-    color: black;
-    font-size: 16px;
+    color: ${COLORS.black};
     cursor: pointer;
     transition: 0.3s;
 
     :hover {
-      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+      opacity: 0.6;
+    }
+
+    span {
+      font-size: 18px;
+      margin-left: 15px;
     }
 
     &.active {
-      background-color: grey;
-      color: white;
-      border: 1px solid ${COLORS.grey};
+      color: ${COLORS.textGreen};
       pointer-events: none;
+
+      svg {
+        path {
+          fill: ${COLORS.textGreen};
+        }
+      }
     }
   `,
   WrapNavElem: styled.div`
+    display: flex;
+    align-items: center;
     margin-bottom: 20px;
   `,
 };

@@ -2,6 +2,8 @@ import { FC, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from '@store/store';
+
+import { Icon } from '@components/icons';
 import { Loader } from '@components/loader';
 import { ROUTES } from '@constants/routes';
 import { PROMISES_AREA } from '@constants/promises-area';
@@ -28,16 +30,24 @@ export const SignIn: FC = () => {
   }, [location, user]);
   return (
     <Styled.Section>
-      <Styled.Wrapper>
-        <Styled.h1>Welcome to SitYEA</Styled.h1>
-        <Styled.Label>Please login</Styled.Label>
-        <Styled.ButtonWrapper>
-          <GoogleButton />
-          <NearLoginButton />
-          <MetamaskButton />
-          <Loader area={PROMISES_AREA.login} />
-        </Styled.ButtonWrapper>
-      </Styled.Wrapper>
+      <Styled.Container>
+        <Icon type="logo" />
+        <Styled.h1>
+          Welcome to <span> SitYEA</span>
+        </Styled.h1>
+        <Styled.Wrapper>
+          <Styled.Label>Please login</Styled.Label>
+          <Styled.ButtonWrapper>
+            <GoogleButton />
+            <NearLoginButton />
+            <MetamaskButton />
+            <Loader area={PROMISES_AREA.login} />
+          </Styled.ButtonWrapper>
+        </Styled.Wrapper>
+      </Styled.Container>
+      <Styled.ImageWrapper>
+        <Icon type="girl" />
+      </Styled.ImageWrapper>
     </Styled.Section>
   );
 };

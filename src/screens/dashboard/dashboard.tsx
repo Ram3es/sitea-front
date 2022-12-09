@@ -30,13 +30,17 @@ export const Dashboard = () => {
       {user.role === ROLES.admin ? (
         <UsersTable />
       ) : (
-        <Loader area={PROMISES_AREA.getUserWithReasults}>
-          <Styled.ChartWrapper>
-            <ChartBar results={results} />
-          </Styled.ChartWrapper>
-          <Styled.TotalStreight>{`Total straight: ${totalHours} hrs`}</Styled.TotalStreight>
-          <UserInfoTable results={results} />
-        </Loader>
+        <Styled.Wrapper>
+          <Loader area={PROMISES_AREA.getUserWithReasults}>
+            <Styled.ChartWrapper>
+              <ChartBar results={results} />
+            </Styled.ChartWrapper>
+            <Styled.TotalStreight>
+              Total straight: <span>{`${totalHours} hrs`}</span>
+            </Styled.TotalStreight>
+            <UserInfoTable results={results} />
+          </Loader>
+        </Styled.Wrapper>
       )}
     </MainContainer>
   );

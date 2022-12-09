@@ -34,11 +34,5 @@ export const NearLoginButton: FC = () => {
     }
   };
 
-  return (
-    <Button
-      onClick={useNearLogin}
-      title="Login with NEAR wallet"
-      minWidth={220}
-    />
-  );
+  return <Button onClick={useNearLogin} title="NEAR WALLET" minWidth={220} />;
 };

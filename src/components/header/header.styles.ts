@@ -1,13 +1,16 @@
-import { Media } from './../../styles/media';
+import { COLORS } from '@styles/colors';
+import { FONTS } from '@styles/fonts';
+import { Media } from '@styles/media';
 import styled from 'styled-components';
 
 export const HeaderStyles = {
   Wrapper: styled.header`
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    height: 80px;
-    padding: 20px 30px;
+    height: 40px;
+    margin-bottom: 20px;
 
     ${Media.mobile`
     flex-direction:column;
@@ -21,13 +24,30 @@ export const HeaderStyles = {
 
     `}
   `,
-  UserEmail: styled.span`
-    margin-right: 20px;
-    font-size: 18px;
+  Title: styled.div`
+    font-family: ${FONTS.productSans};
+    font-style: normal;
+    font-size: 24px;
     font-weight: 700;
+    color: ${COLORS.black};
+  `,
+
+  UserInfoWrapper: styled.div`
+    display: flex;
+
+    p {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+  `,
+
+  UserInfo: styled.span`
+    color: ${COLORS.textGreen};
+
+    font-size: 18px;
 
     ${Media.mobile`
-    margin:5px 0 0 auto;
+    
     font-size: 14px;
     word-break: break-all;
     `}

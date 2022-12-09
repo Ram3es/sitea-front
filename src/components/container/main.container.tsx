@@ -12,10 +12,12 @@ export const MainContainer: FC<IMainContainerProps> = (props) => {
   const { children } = props;
   return (
     <>
-      <Header />
       <StyledCommon.Container>
         <SideBar />
-        <StyledCommon.Content>{children}</StyledCommon.Content>
+        <StyledCommon.Content>
+          <Header />
+          {children}
+        </StyledCommon.Content>
       </StyledCommon.Container>
     </>
   );
