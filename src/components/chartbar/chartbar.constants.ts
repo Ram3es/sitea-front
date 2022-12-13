@@ -1,3 +1,5 @@
+import { TooltipItem } from 'chart.js';
+
 export const options = {
   plugins: {
     title: {
@@ -8,6 +10,15 @@ export const options = {
     legend: {
       labels: {
         font: { size: 16 },
+      },
+    },
+    tooltip: {
+      callbacks: {
+        label: function (context: TooltipItem<'bar'>) {
+          const labels = context.dataset.label;
+          const item = context.dataset.data[context.dataIndex];
+          return `${labels}: ${item} mins`;
+        },
       },
     },
 
@@ -34,6 +45,11 @@ export const options = {
       stacked: true,
       ticks: {
         color: 'black',
+        font: { size: 14 },
+      },
+      title: {
+        display: true,
+        text: ' Minutes',
         font: { size: 14 },
       },
     },

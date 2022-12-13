@@ -5,6 +5,10 @@ import styled from 'styled-components';
 export const DashboardStyles = {
   Wrapper: styled.div`
     padding: 20px 40px;
+
+    ${Media.mobile`
+    padding: 20px 0px;
+    `}
   `,
 
   TotalStreight: styled.div`
@@ -17,7 +21,7 @@ export const DashboardStyles = {
     }
 
     ${Media.mobile`
-    margin: 30px 0 10px;
+    margin: 10px 0 10px;
     font-size: 18px;
     `}
   `,

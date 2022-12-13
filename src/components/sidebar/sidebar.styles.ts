@@ -1,7 +1,5 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { COLORS } from '@styles/colors';
 import { Media } from '@styles/media';
 
 export const SidebarStyles = {
@@ -9,7 +7,6 @@ export const SidebarStyles = {
     width: 20%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 20px 40px 40px;
 
     button {
@@ -22,16 +19,20 @@ export const SidebarStyles = {
 
     ${Media.tablet`
     padding:10px;
+   
     `}
 
     
     ${Media.mobile`
-    flex-direction: row;
+   
     width: 100%;
-    justify-content: space-around;
-    padding:20px 5px;
-    div{
-      margin:0;
+    align-items:end;
+    padding:20px 0;
+    
+
+    svg {
+      margin:auto;
+      
      a {
       min-width: 110px;
       padding: 5px 15px 8px;
@@ -40,43 +41,19 @@ export const SidebarStyles = {
     `}
   `,
 
-  Wrapper: styled.div``,
+  Wrapper: styled.div`
+    height: calc(100vh - 100px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    ${Media.mobile`
+    display:none;
+    `}
+  `,
 
   NavContainer: styled.div`
+    height: 100%;
     margin-top: 45px;
-  `,
-
-  NavElement: styled(NavLink)`
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: ${COLORS.black};
-    cursor: pointer;
-    transition: 0.3s;
-
-    :hover {
-      opacity: 0.6;
-    }
-
-    span {
-      font-size: 18px;
-      margin-left: 15px;
-    }
-
-    &.active {
-      color: ${COLORS.textGreen};
-      pointer-events: none;
-
-      svg {
-        path {
-          fill: ${COLORS.textGreen};
-        }
-      }
-    }
-  `,
-  WrapNavElem: styled.div`
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
   `,
 };

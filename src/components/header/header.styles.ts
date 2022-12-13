@@ -9,15 +9,14 @@ export const HeaderStyles = {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 40px;
     margin-bottom: 20px;
 
     ${Media.mobile`
     flex-direction:column;
-    padding: 10px 10px;
-
+    padding: 10px 0;
+    margin: 0;
+  
     button {
-      
       min-width: 100px;
       margin-left: auto;
     }
@@ -35,9 +34,9 @@ export const HeaderStyles = {
   UserInfoWrapper: styled.div`
     display: flex;
 
-    p {
+    span:first-child {
       font-size: 18px;
-      margin-right: 10px;
+      margin: 0 10px;
     }
   `,
 
@@ -48,7 +47,7 @@ export const HeaderStyles = {
 
     ${Media.mobile`
     
-    font-size: 14px;
+    font-size: 16px;
     word-break: break-all;
     `}
   `,

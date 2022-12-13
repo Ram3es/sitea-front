@@ -10,6 +10,7 @@ export const ButtonSyles = styled.button<IButtonTypings>`
   min-width: ${({ minWidth }) => (minWidth ? `${minWidth}px` : '130px')};
   height: 50px;
   border-radius: 100px;
+  border: none;
   padding: 7px 15px;
   font-size: 14px;
   font-weight: 400;

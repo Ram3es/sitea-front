@@ -11,6 +11,10 @@ export const SignInStyles = {
     min-height: 100vh;
     padding: 10px;
     position: relative;
+
+    ${Media.mobile`
+    align-items: center;
+    `}
   `,
   Container: styled.div`
     width: 100%;
@@ -83,9 +87,7 @@ export const SignInStyles = {
     `}
 
     ${Media.mobile`
-   
-    right: -60px;
-    bottom: -60px;
+   display: none;
     `}
   `,
 };

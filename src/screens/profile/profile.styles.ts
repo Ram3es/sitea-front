@@ -16,47 +16,63 @@ export const ProfileStyles = {
     `}
 
     ${Media.mobile`
-    padding: 0
+    padding:  20px 0;
+    width:100%;
+    
     `}
   `,
   RowWrapper: styled.div`
     display: flex;
-    align-items: center;
-    padding: 10px;
+    height: 50px;
+    margin-bottom: 10px;
 
     ${Media.mobile`
-    padding: 10px 0;
+   
     `}
   `,
   Title: styled.div`
-    width: 200px;
+    display: flex;
+    align-items: center;
+    min-width: 180px;
     padding: 5px;
     font-size: 22px;
     font-weight: 700;
 
     ${Media.mobile`
-    width: 90px;
+    
     font-size: 16px;
+    min-width: 115px;
+    
+   
 
     `}
   `,
   Row: styled.div`
+    display: flex;
+    align-items: center;
     word-break: break-all;
     font-size: 18px;
     font-weight: 600;
-    margin-left: 10px;
+    margin: 0 10px;
 
     ${Media.mobile`
     font-size: 14px;
     `}
   `,
   BtnWrapper: styled.div`
-    margin-left: 10px;
+    display: flex;
 
     button {
       min-width: 280px;
       color: ${COLORS.white};
       background-color: ${COLORS.black};
+
+      ${Media.mobile`
+      min-width: 220px;
+      padding: 5px;
+      height:45px;
+      margin:0;
+    `}
     }
   `,
 };

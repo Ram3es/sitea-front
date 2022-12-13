@@ -16,9 +16,8 @@ export const Header: FC = () => {
   return (
     <Styled.Wrapper>
       <Styled.Title>{ROUTE_TITLE[pathname]}</Styled.Title>
-
       <Styled.UserInfoWrapper>
-        <p>Welcome</p>
+        <span>Welcome</span>
         <Styled.UserInfo>
           {user.email || walletNumber || nearNumber}
         </Styled.UserInfo>

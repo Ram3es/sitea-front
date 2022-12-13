@@ -1,5 +1,5 @@
 import { COLORS } from '@styles/colors';
-import { DATE_OPTIONS } from '@constants/format';
+import { DAY_OPTIONS } from '@constants/format';
 import { useState } from 'react';
 
 export const useChartBarState = (results: IResult[] | undefined) => {
@@ -11,26 +11,26 @@ export const useChartBarState = (results: IResult[] | undefined) => {
     .slice(0, periodDays);
 
   const labels = renderResults?.map((result) =>
-    new Date(result.day).toLocaleString('en-GB', DATE_OPTIONS)
+    new Date(result.day).toLocaleString('en-GB', DAY_OPTIONS)
   );
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'Correct',
+        label: 'Correct (min.)',
         data: renderResults?.map((result) => result.correct),
         backgroundColor: `${COLORS.green}`,
         stack: 'Stack 0',
       },
       {
-        label: 'Hunched',
+        label: 'Hunched (min.)',
         data: renderResults?.map((result) => result.hunched),
         backgroundColor: `${COLORS.violet}`,
         stack: 'Stack 1',
       },
       {
-        label: 'Incorrect',
+        label: 'Incorrect (min.)',
         data: renderResults?.map((result) => result.incorrect),
         backgroundColor: `${COLORS.red}`,
         stack: 'Stack 2',

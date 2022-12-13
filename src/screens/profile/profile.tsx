@@ -33,7 +33,7 @@ export const Profile: FC = () => {
           )}
         </Styled.RowWrapper>
         <Styled.RowWrapper>
-          <Styled.Title>NEAR Wallet :</Styled.Title>
+          <Styled.Title>Near Wallet :</Styled.Title>
           {nearWallet ? (
             <Styled.Row>{nearWallet}</Styled.Row>
           ) : (
