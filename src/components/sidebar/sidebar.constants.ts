@@ -4,7 +4,14 @@ export const navItems: INavItems = {
   user: [
     { title: 'Dashboard', route: ROUTES.main, img: 'grid' },
     { title: 'Staking', route: ROUTES.stacking, img: 'coins' },
-    { title: 'My Profile', route: ROUTES.profile, img: 'user' },
+    { title: 'NFTs', route: ROUTES.NFT, img: 'NFT' },
+    {
+      title: 'Governance',
+      route: ROUTES.governance,
+      img: 'bank',
+      class: 'stroke',
+    },
+    { title: 'FAQ', route: ROUTES.FAQ, img: 'chatFaq', class: 'stroke' },
   ],
   admin: [{ title: 'Users', route: ROUTES.main, img: 'user' }],
 };

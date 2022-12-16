@@ -23,12 +23,14 @@ export const CommonStyles = {
     width: 80%;
     padding: 20px;
     background-color: ${COLORS.bcgLightGrey};
+    overflow-y: auto;
 
     ${Media.mobile`
    
 width: 100%;
 padding: 5px;
 margin-top: 80px;
+ 
 `}
   `,
 };

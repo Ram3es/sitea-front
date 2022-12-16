@@ -1,3 +1,4 @@
+import { FONTS } from '@styles/fonts';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { COLORS } from '@styles/colors';
@@ -23,6 +24,7 @@ export const NavBarStyles = {
     }
 
     span {
+      font-family: ${FONTS.productSans};
       font-size: 18px;
       margin-left: 15px;
     }
@@ -34,6 +36,13 @@ export const NavBarStyles = {
       svg {
         path {
           fill: ${COLORS.textGreen};
+        }
+      }
+
+      svg.stroke {
+        path {
+          stroke: ${COLORS.textGreen};
+          fill: none;
         }
       }
     }

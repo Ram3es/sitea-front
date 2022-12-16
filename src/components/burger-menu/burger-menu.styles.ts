@@ -52,7 +52,7 @@ export const BurgerStyles = {
     top: 0;
     right: 0;
     width: 100%;
-    height: 250px;
+    height: 400px;
     background-color: ${COLORS.lightGrey};
     border-bottom: 3px solid ${COLORS.green};
     z-index: 5;

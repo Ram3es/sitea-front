@@ -26,7 +26,7 @@ export const NavBar: FC = () => {
           return (
             <Styled.WrapNavElem key={item.title}>
               <Styled.NavElement end={true} to={item.route}>
-                <Icon type={item.img} />
+                <Icon type={item.img} className={item.class} />
                 <span>{item.title}</span>
               </Styled.NavElement>
             </Styled.WrapNavElem>

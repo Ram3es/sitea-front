@@ -20,6 +20,9 @@ import { NearFailurePage } from '@screens/auth/near-login/near-failure-page';
 import { PrivateAdmin } from './admin-private-route';
 
 import { PrivateUser } from './user-private-route';
+import { NFTsPage } from '@screens/NFT';
+import { Governance } from '@screens/governance';
+import { FaqPage } from '@screens/FAQ';
 
 export const App: FC = () => {
   return (
@@ -31,6 +34,9 @@ export const App: FC = () => {
             <Route element={<PrivateUser />}>
               <Route path={ROUTES.profile} element={<Profile />} />
               <Route path={ROUTES.stacking} element={<Stacking />} />
+              <Route path={ROUTES.NFT} element={<NFTsPage />} />
+              <Route path={ROUTES.governance} element={<Governance />} />
+              <Route path={ROUTES.FAQ} element={<FaqPage />} />
             </Route>
             <Route element={<PrivateAdmin />}>
               <Route path={ROUTES.user} element={<UserInfo />} />
