@@ -60,7 +60,6 @@ export const FaqPageStyles = {
     }
   `,
   QuestionTale: styled.div<{ isActive: boolean }>`
-    max-height: ${({ isActive }) => (isActive ? '200px' : '50px')};
     padding: 10px 40px 15px 48px;
     background-color: ${({ isActive }) =>
       isActive ? `${COLORS.black}` : `${COLORS.violet}`};
@@ -70,7 +69,7 @@ export const FaqPageStyles = {
     margin-bottom: 15px;
     position: relative;
 
-    transition: 0.3s ease-in-out;
+    transition: 0.1s linear;
 
     svg {
       path {
@@ -83,11 +82,13 @@ export const FaqPageStyles = {
       font-size: 17px;
     }
 
-    p {
-      visibility: ${({ isActive }) => (isActive ? 'visible' : 'hidden')};
-      margin-top: 20px;
-      transition-delay: 150ms;
-      transition-property: visibility;
+    div.panel {
+      max-height: ${({ isActive }) => (isActive ? '100px' : '0')};
+      overflow: hidden;
+      padding-top: 10px;
+      opacity: ${({ isActive }) => (isActive ? '1' : '0')};
+      transition: 0.3s ease-out;
+      transition-property: max-height opacity;
     }
 
     ${Media.mobile`

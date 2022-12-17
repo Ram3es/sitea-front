@@ -35,7 +35,9 @@ export const FaqPage = () => {
                 <Styled.Circle />
                 <span>{question.title}</span>
 
-                <p>{question.description}</p>
+                <div className="panel">
+                  <p>{question.description}</p>
+                </div>
 
                 <Styled.IconWrapper>
                   {isActive[question.name as keyof IInitState] ? (
@@ -47,7 +49,6 @@ export const FaqPage = () => {
               </Styled.QuestionTale>
             );
           })}
-          <div style={{ width: '100%', height: '20px' }}></div>
         </Styled.QustionSection>
       </Styled.ContentContainer>
     </MainContainer>
