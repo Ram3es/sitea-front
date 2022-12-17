@@ -83,7 +83,7 @@ export const FaqPageStyles = {
     }
 
     div.panel {
-      max-height: ${({ isActive }) => (isActive ? '100px' : '0')};
+      max-height: ${({ isActive }) => (isActive ? '200px' : '0')};
       overflow: hidden;
       padding-top: 10px;
       opacity: ${({ isActive }) => (isActive ? '1' : '0')};
