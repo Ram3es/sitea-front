@@ -23,13 +23,23 @@ export const NavBar: FC = () => {
     <Styled.NavBarWrapper>
       <div>
         {navItems[userRole]?.map((item) => {
+          const LinkContent = (
+            <>
+              <Icon type={item.img} className={item.class} />
+              <span>{item.title}</span>
+            </>
+          );
+          const content = item.isLink ? (
+            <Styled.Link href={item.route} target="_blank">
+              {LinkContent}
+            </Styled.Link>
+          ) : (
+            <Styled.NavElement end={true} to={item.route}>
+              {LinkContent}
+            </Styled.NavElement>
+          );
           return (
-            <Styled.WrapNavElem key={item.title}>
-              <Styled.NavElement end={true} to={item.route}>
-                <Icon type={item.img} className={item.class} />
-                <span>{item.title}</span>
-              </Styled.NavElement>
-            </Styled.WrapNavElem>
+            <Styled.WrapNavElem key={item.title}>{content}</Styled.WrapNavElem>
           );
         })}
       </div>

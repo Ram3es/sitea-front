@@ -32,7 +32,8 @@ export const NearSuccessPage: FC = () => {
         dispatch(loginUser(data.user));
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          return errorMessage('Account with such wallet already exist').fire();
+          console.error(error.message);
+          return errorMessage(`Something wrong happend`).fire();
         }
       }
     }

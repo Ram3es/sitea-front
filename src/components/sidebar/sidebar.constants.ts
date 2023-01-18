@@ -3,7 +3,12 @@ import { INavItems } from './sidebar.typings';
 export const navItems: INavItems = {
   user: [
     { title: 'Dashboard', route: ROUTES.main, img: 'grid' },
-    { title: 'Staking', route: ROUTES.stacking, img: 'coins' },
+    {
+      title: 'Staking',
+      route: 'https://staking.sityea.io/',
+      img: 'coins',
+      isLink: true,
+    },
     { title: 'NFTs', route: ROUTES.NFT, img: 'NFT' },
     {
       title: 'Governance',

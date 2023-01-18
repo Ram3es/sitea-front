@@ -3,6 +3,7 @@ interface IItems {
   route: string;
   img: string;
   class?: string;
+  isLink?: boolean;
 }
 export interface INavItems {
   user: IItems[];
