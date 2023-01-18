@@ -20,10 +20,7 @@ const getInstance = () => {
     if (!token) {
       return config;
     }
-    config = {
-      ...config,
-      headers: { Authorization: `Bearer ${token}` },
-    };
+    config.headers.set('Authorization', `Bearer ${token}`);
     return config;
   });
   instance.interceptors.response.use(
